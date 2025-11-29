@@ -263,7 +263,7 @@ export default function OrdersPage() {
                 <DialogHeader>
                   <DialogTitle className="flex items-center justify-between">
                     <span>Order {selectedOrder.orderNumber}</span>
-                    <Badge variant={getStatusColor(selectedOrder.status) as any} className="flex items-center">
+                    <Badge variant={getStatusColor(selectedOrder.status) as "secondary" | "default" | "destructive"} className="flex items-center">
                       {getStatusIcon(selectedOrder.status)}
                       <span className="ml-1 capitalize">{selectedOrder.status}</span>
                     </Badge>

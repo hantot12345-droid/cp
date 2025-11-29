@@ -14,7 +14,6 @@ import {
   DollarSign,
   Search,
   Plus,
-  Filter,
   Menu,
   X
 } from "lucide-react";
@@ -105,10 +104,12 @@ export default function Dashboard() {
 
         <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-gray-200">
           <div className="flex items-center space-x-3">
-            <img
+            <NextImage
               className="w-8 h-8 rounded-full"
               src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/83c8d0e5-f925-44de-9d24-c32d740fcca4.png"
               alt="Admin profile"
+              width={32}
+              height={32}
             />
             <div className="flex-1 min-w-0">
               <p className="text-sm font-medium text-gray-900 truncate">Admin User</p>
