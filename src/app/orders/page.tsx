@@ -225,7 +225,7 @@ export default function OrdersPage() {
                         ${order.total.toFixed(2)}
                       </td>
                       <td className="py-3 px-4">
-                        <Badge variant={getStatusColor(order.status) as any} className="flex items-center w-fit">
+                      <Badge variant={getStatusColor(order.status) as "default" | "secondary" | "destructive"} className="flex items-center w-fit">
                           {getStatusIcon(order.status)}
                           <span className="ml-1 capitalize">{order.status}</span>
                         </Badge>

@@ -3,14 +3,14 @@
 import { useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { 
-  Package, 
-  ShoppingCart, 
-  TrendingUp, 
-  AlertTriangle, 
-  Users, 
+import Image from "next/image";
+
+import {
+  Package,
+  ShoppingCart,
+  TrendingUp,
+  AlertTriangle,
+  Users,
   DollarSign,
   Search,
   Plus,
@@ -104,7 +104,7 @@ export default function Dashboard() {
 
         <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-gray-200">
           <div className="flex items-center space-x-3">
-            <NextImage
+            <Image
               className="w-8 h-8 rounded-full"
               src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/83c8d0e5-f925-44de-9d24-c32d740fcca4.png"
               alt="Admin profile"
@@ -222,13 +222,13 @@ export default function Dashboard() {
                         <p className="text-sm font-medium text-gray-900">{activity.description}</p>
                         <p className="text-xs text-gray-500">{activity.time}</p>
                       </div>
-                      <Badge variant={
-                        activity.status === 'pending' ? 'secondary' :
-                        activity.status === 'warning' ? 'destructive' :
-                        'default'
-                      }>
+                      <span className={`inline-flex items-center justify-center rounded-md border px-2 py-0.5 text-xs font-medium w-fit whitespace-nowrap shrink-0 ${
+                        activity.status === 'pending' ? 'border-transparent bg-secondary text-secondary-foreground' :
+                        activity.status === 'warning' ? 'border-transparent bg-destructive text-white' :
+                        'border-transparent bg-primary text-primary-foreground'
+                      }`}>
                         {activity.status}
-                      </Badge>
+                      </span>
                     </div>
                   ))}
                 </div>
@@ -250,9 +250,9 @@ export default function Dashboard() {
                     <div key={index} className="p-3 border border-red-200 rounded-lg bg-red-50">
                       <div className="flex justify-between items-start mb-2">
                         <h4 className="text-sm font-medium text-gray-900">{item.name}</h4>
-                        <Badge variant="destructive" className="text-xs">
+                        <span className="inline-flex items-center justify-center rounded-md border px-2 py-0.5 text-xs font-medium border-transparent bg-destructive text-white">
                           {item.stock} left
-                        </Badge>
+                        </span>
                       </div>
                       <p className="text-xs text-gray-600 mb-2">{item.category}</p>
                       <div className="flex justify-between text-xs text-gray-500">

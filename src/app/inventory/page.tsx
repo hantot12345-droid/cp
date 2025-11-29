@@ -37,7 +37,7 @@ export default function InventoryPage() {
 
   // Filter and sort parts
   const filteredParts = useMemo(() => {
-    let filtered = parts.filter(part => {
+    const filtered = parts.filter(part => {
       const matchesSearch = part.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
                            part.sku.toLowerCase().includes(searchTerm.toLowerCase()) ||
                            part.description.toLowerCase().includes(searchTerm.toLowerCase());
@@ -49,19 +49,17 @@ export default function InventoryPage() {
 
     // Sort parts
     filtered.sort((a, b) => {
-      let aValue: any = a[sortBy as keyof Part];
-      let bValue: any = b[sortBy as keyof Part];
+      const aValue = a[sortBy as keyof Part];
+      const bValue = b[sortBy as keyof Part];
 
-      if (typeof aValue === 'string') {
-        aValue = aValue.toLowerCase();
-        bValue = bValue.toLowerCase();
+      if (typeof aValue === 'string' && typeof bValue === 'string') {
+        const aStr = aValue.toLowerCase();
+        const bStr = bValue.toLowerCase();
+        return sortOrder === "asc" ? aStr.localeCompare(bStr) : bStr.localeCompare(aStr);
+      } else if (typeof aValue === 'number' && typeof bValue === 'number') {
+        return sortOrder === "asc" ? aValue - bValue : bValue - aValue;
       }
-      
-      if (sortOrder === "asc") {
-        return aValue < bValue ? -1 : aValue > bValue ? 1 : 0;
-      } else {
-        return aValue > bValue ? -1 : aValue < bValue ? 1 : 0;
-      }
+      return 0;
     });
 
     return filtered;
@@ -291,7 +289,7 @@ export default function InventoryPage() {
                           <span className="text-gray-400 text-xs ml-1">/ {part.maxStock}</span>
                         </td>
                         <td className="py-3 px-4">
-                          <Badge variant={stockStatus.color as any}>
+                          <Badge variant={stockStatus.color as "default" | "secondary" | "destructive" | "outline"}>
                             {stockStatus.text}
                           </Badge>
                         </td>
