@@ -9,23 +9,26 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { 
-  Package, 
-  Search, 
-  Plus, 
-  Filter, 
-  Edit, 
-  Trash2, 
+import {
+  Package,
+  Search,
+  Plus,
+  Filter,
+  Edit,
+  Trash2,
   AlertTriangle,
   TrendingUp,
   DollarSign,
   Eye,
-  ArrowUpDown
+  ArrowUpDown,
+  Menu
 } from "lucide-react";
 import { parts, categories } from "@/lib/data";
 import { Part } from "@/lib/types";
+import Sidebar from "@/components/Sidebar";
 
 export default function InventoryPage() {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [selectedStatus, setSelectedStatus] = useState("all");
@@ -86,22 +89,41 @@ export default function InventoryPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="p-6">
+    <div className="flex h-screen bg-gray-50">
+      <Sidebar currentPage="inventory" />
+
+      {/* Main content */}
+      <div className="flex-1 flex flex-col overflow-hidden">
         {/* Header */}
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6">
-          <div>
-            <h1 className="text-3xl font-bold text-gray-900">Inventory Management</h1>
-            <p className="text-gray-600 mt-1">Manage your car tuning parts and components</p>
+        <header className="bg-white shadow-sm border-b border-gray-200">
+          <div className="flex items-center justify-between px-6 py-4">
+            <div className="flex items-center space-x-4">
+              <button
+                onClick={() => setSidebarOpen(true)}
+                className="lg:hidden p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100"
+              >
+                <Menu className="w-5 h-5" />
+              </button>
+              <h1 className="text-2xl font-semibold text-gray-900">Inventory Management</h1>
+            </div>
+
+            <div className="flex items-center space-x-4">
+              <Button
+                onClick={() => setIsAddDialogOpen(true)}
+                className="bg-blue-600 hover:bg-blue-700"
+              >
+                <Plus className="w-4 h-4 mr-2" />
+                Add New Part
+              </Button>
+            </div>
           </div>
-          <Button 
-            onClick={() => setIsAddDialogOpen(true)}
-            className="mt-4 sm:mt-0 bg-blue-600 hover:bg-blue-700"
-          >
-            <Plus className="w-4 h-4 mr-2" />
-            Add New Part
-          </Button>
-        </div>
+        </header>
+
+        {/* Dashboard content */}
+        <main className="flex-1 overflow-y-auto p-6">
+          <div className="mb-6">
+            <p className="text-gray-600">Manage your car tuning parts and components</p>
+          </div>
 
         {/* Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
@@ -495,6 +517,7 @@ export default function InventoryPage() {
             )}
           </DialogContent>
         </Dialog>
+        </main>
       </div>
     </div>
   );

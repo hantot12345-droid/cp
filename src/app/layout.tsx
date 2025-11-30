@@ -5,7 +5,7 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "TuneStock Pro - Car Tuning Inventory Management",
+  title: "KS Nusa Motorsport - Car Tuning Inventory Management",
   description: "Professional inventory management system for car tuning companies",
 };
 

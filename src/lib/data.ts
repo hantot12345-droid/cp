@@ -14,11 +14,11 @@ export const categories: Category[] = [
 export const suppliers: Supplier[] = [
   {
     id: '1',
-    name: 'Performance Plus Inc.',
+    name: 'Haltech ECU.',
     contact: {
-      email: 'orders@performanceplus.com',
+      email: 'haltech@performanceplus.com',
       phone: '+1-555-0123',
-      website: 'https://performanceplus.com'
+      website: 'https://haltech.com'
     },
     address: {
       street: '123 Industrial Blvd',
@@ -36,11 +36,11 @@ export const suppliers: Supplier[] = [
   },
   {
     id: '2',
-    name: 'TurboTech Solutions',
+    name: 'LINK ECU',
     contact: {
-      email: 'sales@turbotech.com',
+      email: 'sales@linkecu.com',
       phone: '+1-555-0456',
-      website: 'https://turbotech.com'
+      website: 'https://linkecu.com'
     },
     address: {
       street: '456 Speed Way',

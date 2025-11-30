@@ -6,24 +6,27 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { 
-  Users, 
-  Search, 
-  Plus, 
-  Eye, 
-  Edit, 
+import {
+  Users,
+  Search,
+  Plus,
+  Eye,
+  Edit,
   Phone,
   Mail,
   MapPin,
   Star,
   Clock,
   DollarSign,
-  Truck
+  Truck,
+  Menu
 } from "lucide-react";
 import { suppliers } from "@/lib/data";
 import { Supplier } from "@/lib/types";
+import Sidebar from "@/components/Sidebar";
 
 export default function SuppliersPage() {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedSupplier, setSelectedSupplier] = useState<Supplier | null>(null);
   const [isViewDialogOpen, setIsViewDialogOpen] = useState(false);
@@ -56,19 +59,38 @@ export default function SuppliersPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="p-6">
+    <div className="flex h-screen bg-gray-50">
+      <Sidebar currentPage="suppliers" />
+
+      {/* Main content */}
+      <div className="flex-1 flex flex-col overflow-hidden">
         {/* Header */}
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6">
-          <div>
-            <h1 className="text-3xl font-bold text-gray-900">Supplier Management</h1>
-            <p className="text-gray-600 mt-1">Manage your parts suppliers and vendors</p>
+        <header className="bg-white shadow-sm border-b border-gray-200">
+          <div className="flex items-center justify-between px-6 py-4">
+            <div className="flex items-center space-x-4">
+              <button
+                onClick={() => setSidebarOpen(true)}
+                className="lg:hidden p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100"
+              >
+                <Menu className="w-5 h-5" />
+              </button>
+              <h1 className="text-2xl font-semibold text-gray-900">Supplier Management</h1>
+            </div>
+
+            <div className="flex items-center space-x-4">
+              <Button className="bg-blue-600 hover:bg-blue-700">
+                <Plus className="w-4 h-4 mr-2" />
+                Add Supplier
+              </Button>
+            </div>
           </div>
-          <Button className="mt-4 sm:mt-0 bg-blue-600 hover:bg-blue-700">
-            <Plus className="w-4 h-4 mr-2" />
-            Add Supplier
-          </Button>
-        </div>
+        </header>
+
+        {/* Dashboard content */}
+        <main className="flex-1 overflow-y-auto p-6">
+          <div className="mb-6">
+            <p className="text-gray-600">Manage your parts suppliers and vendors</p>
+          </div>
 
         {/* Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
@@ -339,6 +361,7 @@ export default function SuppliersPage() {
             )}
           </DialogContent>
         </Dialog>
+        </main>
       </div>
     </div>
   );
