@@ -2,13 +2,11 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
 import {
   Package,
   ShoppingCart,
   TrendingUp,
   Users,
-  Menu,
   X
 } from "lucide-react";
 

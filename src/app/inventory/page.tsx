@@ -20,15 +20,13 @@ import {
   TrendingUp,
   DollarSign,
   Eye,
-  ArrowUpDown,
-  Menu
+  ArrowUpDown
 } from "lucide-react";
 import { parts, categories } from "@/lib/data";
 import { Part } from "@/lib/types";
 import Sidebar from "@/components/Sidebar";
 
 export default function InventoryPage() {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [selectedStatus, setSelectedStatus] = useState("all");
@@ -98,12 +96,6 @@ export default function InventoryPage() {
         <header className="bg-white shadow-sm border-b border-gray-200">
           <div className="flex items-center justify-between px-6 py-4">
             <div className="flex items-center space-x-4">
-              <button
-                onClick={() => setSidebarOpen(true)}
-                className="lg:hidden p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100"
-              >
-                <Menu className="w-5 h-5" />
-              </button>
               <h1 className="text-2xl font-semibold text-gray-900">Inventory Management</h1>
             </div>
 
@@ -496,7 +488,7 @@ export default function InventoryPage() {
                           <div className="flex justify-between">
                             <span className="text-gray-600">Dimensions:</span>
                             <span className="font-medium">
-                              {selectedPart.dimensions.length}" × {selectedPart.dimensions.width}" × {selectedPart.dimensions.height}"
+                              {`${selectedPart.dimensions.length}" × ${selectedPart.dimensions.width}" × ${selectedPart.dimensions.height}"`}
                             </span>
                           </div>
                         )}

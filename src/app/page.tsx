@@ -1,26 +1,18 @@
 "use client";
-
-import { useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import Image from "next/image";
 
 import {
   Package,
   ShoppingCart,
-  TrendingUp,
   AlertTriangle,
-  Users,
   DollarSign,
   Search,
-  Plus,
-  Menu,
-  X
+  Plus
 } from "lucide-react";
 import Sidebar from "@/components/Sidebar";
 
 export default function Dashboard() {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   // Mock data for dashboard
   const stats = {
@@ -64,12 +56,6 @@ export default function Dashboard() {
         <header className="bg-white shadow-sm border-b border-gray-200">
           <div className="flex items-center justify-between px-6 py-4">
             <div className="flex items-center space-x-4">
-              <button
-                onClick={() => setSidebarOpen(true)}
-                className="lg:hidden p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100"
-              >
-                <Menu className="w-5 h-5" />
-              </button>
               <h1 className="text-2xl font-semibold text-gray-900">Dashboard</h1>
             </div>
 
